@@ -6,12 +6,12 @@ const searchField = () => {
     const url = `https://openlibrary.org/search.json?q=${searchText}`;
     fetch(url)
         .then(res => res.json())
-        .then(data=>displayBook(data.docs))
+        .then(data => displayBook(data.docs))
 }
-    //  display all books
-     const displayBook = (docs) => {
-     const imageBox = document.getElementById('image-box');
-    // console.log(books);
+    //  display all books and make dynamic
+const displayBook = (docs) => {
+    const imageBox = document.getElementById('image-box');
+    imageBox.textContent = '';
          docs.forEach(book => {
          console.log(book);
          const div = document.createElement('div');
