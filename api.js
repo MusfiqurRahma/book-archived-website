@@ -3,22 +3,43 @@ const searchField = () => {
     searchText = searchField.value;
     // clear field
     searchField.value = '';
+  const errorDiv = document.getElementById('error');
+    if (searchText === '') {
+      errorDiv.innerText = "Search field can't be empty";
+      return;
+  }
     const url = `https://openlibrary.org/search.json?q=${searchText}`;
     fetch(url)
         .then(res => res.json())
-        .then(data => displayBook(data.docs))
+        .then(data => displayBook(data))
+
 }
     //  display all books and make dynamic
-const displayBook = (docs) => {
-    const imageBox = document.getElementById('image-box');
-    imageBox.textContent = '';
-         docs.forEach(book => {
-         console.log(book);
-         const div = document.createElement('div');
+const displayBook = (books) => {
+         const imageBox = document.getElementById('image-box');
+         imageBox.textContent = '';
+  const errorDiv = document.getElementById('error');
+  errorDiv.style.color = 'red';
+  errorDiv.style.fontSize = '20px';
+  errorDiv.innerText = '';
+          // error handling
+         if (books.length === 0) {
+            errorDiv.innerText ='No Matching Found'
+  }
+  const foundData = document.getElementById('found-data');
+  foundData.textContent = '';
+  const div = document.createElement('div')
+  div.innerHTML = `
+  <h4> Found Data: ${books.numFound} </h4>`
+  foundData.appendChild(div);
+
+  // console.log(books.numFound);
+           books.docs.forEach(book => {
+            const div = document.createElement('div');
              div.classList.add('col');
              div.innerHTML = `
              <div class="card">
-            <img src="https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg" class="card-img-top" alt="...">
+            <img src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">Book Name: ${book.title}</h5>
               <h6 class="card-text">Author: ${book.author_name}</h6>
