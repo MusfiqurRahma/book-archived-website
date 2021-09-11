@@ -8,12 +8,18 @@
     <!-- bootstrap link -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 </head>
-<body style="background-color: rgb(245, 242, 242);">
+<body style="background-image: url(./background-image.PNG); background-size: cover;">
     <section>
-      <h2 class="text-center text-info">~Search Your Favourite Book~</h2>
-    <div class="input-group mb-3 mx-auto w-50">
+      <h2 class="text-center text-primary mt-4">~Search Your Favourite Book~</h2>
+    <div class="input-group mx-auto w-50 mb-5">
         <input id="search-field" type="text" class="form-control" placeholder="Search here~~" aria-label="Recipient's username" aria-describedby="button-addon2">
-        <button onclick="searchField()" class="btn btn-outline-secondary" type="button" id="input-button">Search</button>
+        <button onclick="searchField()" class="btn btn-outline-secondary text-danger" type="button" id="input-button">Search</button>
+      </div>
+      <!-- spinner -->
+      <div class="d-flex justify-content-center d-none" id="spinner">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
       </div>
         <!-- error handling -->
         <div class="text-center" id="error"></div>
