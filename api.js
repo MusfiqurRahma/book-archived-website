@@ -1,13 +1,25 @@
+// var inputButton = document.getElementById("input-button");
+// var searchField = document.getElementById("search-field");
+
+// searchField.addEventListener("keypress", function(event) {
+//     // event.preventDefault();
+//     if (event.key == "Enter")
+//         inputButton.click();
+// });
+const spinner =document.getElementById('spinner')
+spinner.style.display = 'none';
 const searchField = () => {
   const searchField = document.getElementById('search-field');
   searchText = searchField.value;
   // clear field
   searchField.value = '';
-  const imageBox = document.getElementById('image-box');
+  spinner.style.display = 'block';
+
+  const imageBox = document.getElementById('image-box'); 
   imageBox.textContent = '';
-const errorDiv = document.getElementById('error');
+  const errorDiv = document.getElementById('error');
   if (searchText === '') {
-    // document.getElementById('spinner').classList.remove(d-none)
+    spinner.style.display = 'none';
     errorDiv.innerHTML = "❌Search field can't be empty";
     errorDiv.style.color = 'red';
     errorDiv.style.fontSize = '25px';
@@ -22,6 +34,7 @@ const errorDiv = document.getElementById('error');
 }
   //  display books
 const displayBook = (books) => {
+       
        const imageBox = document.getElementById('image-box');
        imageBox.textContent = '';
 // found data result
@@ -37,13 +50,15 @@ errorDiv.style.color = 'red';
 errorDiv.style.fontSize = '25px';
 errorDiv.innerText = '';
   if (books.docs == '') {
-     errorDiv.innerHTML=('"❌Please Give A Book Name"')
+    errorDiv.innerHTML = ('"❌Please Give A Book Name"')
+    spinner.style.display = 'none';
   }
 
         // display details about books
   // console.log(books.docs);
   books.docs.forEach(book => {
-           console.log(book);
+          // console.log(book);
+          spinner.style.display = 'none';
           const div = document.createElement('div');
            div.classList.add('col');
            div.innerHTML = `
